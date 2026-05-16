@@ -11,21 +11,21 @@ import java.util.List;
 @RequestMapping("/customer/orders")
 public class CustomerOrderController {
 
-    // Inject your OrderService here to talk to your database
-    // private final OrderService orderService;
-    // public CustomerOrderController(OrderService orderService) { this.orderService = orderService; }
+    private final OrderService orderService; // Inject your Order business logic service
+
+    public CustomerOrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping
-    public ResponseEntity<?> getUserOrderHistory(Principal principal) {
-        // 'principal.getName()' gives you the username/email extracted directly from your verified JWT token
+    public ResponseEntity<List<OrderResponse>> getUserOrderHistory(Principal principal) {
+        // 1. Get the username/email out of your verified JWT token
         String username = principal.getName();
-        System.out.println("Fetching order history records for customer username: " + username);
         
-        // Fetch matching database records using your service layers:
-        // List<OrderResponse> orders = orderService.getOrdersByUsername(username);
-        // return ResponseEntity.ok(orders);
+        // 2. Query your purchase_order and order_items tables based on this user
+        List<OrderResponse> orders = orderService.getOrdersByUsername(username);
         
-        // Temporary placeholder to verify the 403 error disappears:
-        return ResponseEntity.ok(List.of()); 
+        // 3. Return the real array back to React
+        return ResponseEntity.ok(orders); 
     }
 }
