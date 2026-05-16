@@ -9,4 +9,7 @@ import com.example.jwtDemo.entity.User;
 
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
     Optional<PurchaseOrder> findByIdAndUser(Long id, User user);
+
+    //new add for user order
+    List<PurchaseOrder> findByUser(User user);
 }
