@@ -2,7 +2,8 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-RUN ./mvnw clean package -DskipTests
+# CHANGED LINE: Bypassing the wrapper script completely
+RUN mvn clean package -DskipTests
 
 # Step 2: Run the application using an official Java runtime image
 FROM eclipse-temurin:17-jre-jammy
