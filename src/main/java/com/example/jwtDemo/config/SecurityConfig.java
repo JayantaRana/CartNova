@@ -66,7 +66,7 @@ public class SecurityConfig {
                                 "/admin-home.html",
                                 "/add-product.html", "/all-products-admin.html",
                                 "/edit-product.html", "/view-product-admin.html",
-                                "/css/**", "/js/**")
+                                "/css/**", "/js/**", "/error")
                         .permitAll()
                         .requestMatchers(HttpMethod.GET, "/admin/products/**").permitAll() // new add
                         .requestMatchers(HttpMethod.GET, "/auth/products").permitAll()
