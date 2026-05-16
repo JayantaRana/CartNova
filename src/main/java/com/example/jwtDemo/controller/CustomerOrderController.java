@@ -78,6 +78,7 @@ public class CustomerOrderController {
                 if (item.getProduct() != null) {
                     itemMap.put("productName", item.getProduct().getName());
                     String actualCategory = item.getProduct().getCategory();
+                    itemMap.put("category", actualCategory != null ? actualCategory : "E-Commerce");
                     itemMap.put("imageUrl", item.getProduct().getImageUrl() != null ? item.getProduct().getImageUrl() : "https://images.unsplash.com/photo-1523275335684-37898b6baf30");
                 } else {
                     itemMap.put("productName", "CartNova Product");
